@@ -47,5 +47,15 @@
         getdocButton.textContent = 'working';
         port.send('G');
       });
+
+    serial.getPorts().then(ports => {
+      if (ports.length == 0) {
+        statusDisplay.textContent = 'No device found.';
+      } else {
+        statusDisplay.textContent = 'Connecting...';
+        port = ports[0];
+        connect();
+      }
+    });
   });
 })();
