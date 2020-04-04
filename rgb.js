@@ -37,14 +37,13 @@
         return;
       }
 
-      /*
       let view = new Uint8Array(3);
       view[0] = parseInt(redSlider.value);
       view[1] = parseInt(greenSlider.value);
       view[2] = parseInt(blueSlider.value);
       port.send(view);
-      */
-      port.send('G');
+  
+  //    port.send('G');
 
     };
 
