@@ -8,6 +8,8 @@
     let ztdoc = document.querySelector('#ZTDoc');
     let port;
 
+    getdocButton.textContent = '1';
+
     function connect() {
       port.connect().then(() => {
         statusDisplay.textContent = '';
