@@ -15,6 +15,7 @@
         statusDisplay.textContent = '';
         connectButton.textContent = 'Disconnect';
         ztdoc.innerHTML = '';
+        port.send('G');
 
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
@@ -47,7 +48,7 @@
 
     getdocButton.addEventListener('click', function() {
         getdocButton.textContent = 'working';
-        port.send('G');
+        //port.send('G');
       });
 
     serial.getPorts().then(ports => {
