@@ -21,7 +21,7 @@
         
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
-          str = String.fromCharCode.apply(null, new Uint16Array(data));
+          let str = String.fromCharCode.apply(null, new Uint16Array(data));
           ztdoc.insertAdjacentHTML('afterend', str);
           //ztdoc.insertAdjacentHTML('afterend',textDecoder.decode(data));
           //ztdoc.innerHTML += textDecoder.decode(data);
