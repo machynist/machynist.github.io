@@ -13,7 +13,7 @@
     let port;
     let docStr = ""
 
-    getdocButton.textContent = '3';
+    getdocButton.textContent = '4';
 
     function connect() {
       port.connect().then(() => {
@@ -24,7 +24,7 @@
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
           let str = String.fromCharCode.apply(null, new Uint16Array(data));
-          docString += str;
+          docStr += str;
           //ztdoc.insertAdjacentHTML('afterend',textDecoder.decode(data));
           //ztdoc.innerHTML += textDecoder.decode(data);
           console.log(str);
