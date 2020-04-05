@@ -24,12 +24,13 @@
         
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
-          let str = String.fromCharCode.apply(null, new Uint16Array(data));
+          let str = textDecoder.decode(data);
+          //let str = String.fromCharCode.apply(null, new Uint16Array(data));
           docStr += str;
           //ztdoc.insertAdjacentHTML('afterend',textDecoder.decode(data));
           //ztdoc.innerHTML += textDecoder.decode(data);
-          console.log("charCode\n" + str);
-          console.log("decode\n" + textDecoder.decode(data));
+          //console.log("charCode\n" + str);
+          //console.log("decode\n" + textDecoder.decode(data));
         }
         port.onReceiveError = error => {
           console.error(error);
