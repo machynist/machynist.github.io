@@ -4,12 +4,14 @@
   document.addEventListener('DOMContentLoaded', event => {
     let connectButton = document.querySelector("#connect");
     let getdocButton = document.querySelector("#getdoc");
+    let showdocButton = document.querySelector("#showdoc");
     let statusDisplay = document.querySelector('#status');
     let redSlider = document.querySelector('#red');
     let greenSlider = document.querySelector('#green');
     let blueSlider = document.querySelector('#blue');
     let ztdoc = document.querySelector('#ZTDoc');
     let port;
+    let docStr = ""
 
     getdocButton.textContent = '3';
 
@@ -22,10 +24,10 @@
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
           let str = String.fromCharCode.apply(null, new Uint16Array(data));
-          ztdoc.insertAdjacentHTML('afterend', str);
+          docString += str;
           //ztdoc.insertAdjacentHTML('afterend',textDecoder.decode(data));
           //ztdoc.innerHTML += textDecoder.decode(data);
-          console.log(textDecoder.decode(data));
+          console.log(str);
         }
         port.onReceiveError = error => {
           console.error(error);
@@ -82,6 +84,11 @@
       let view = new Uint8Array(buffer);
       view[0] = str.charCodeAt(0);
       port.send(buffer);
+    });
+
+    showdocButton.addEventListener('click', function() {
+      showdocButton.textContent = 'working';
+      ztdoc.insertAdjacentHTML('afterbegin', docStr);
     });
 
     serial.getPorts().then(ports => {
