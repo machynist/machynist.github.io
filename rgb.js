@@ -43,12 +43,12 @@
       view[2] = parseInt(blueSlider.value);
       port.send(view);
 */
+      var str = "Google";
       let buffer = new ArrayBuffer(1);
       let view = new Uint8Array(buffer);
-      view[0] = 'G';
+      view[0] = str.charCodeAt(0);
       // new DataView(buffer).setUint8(0, 'G', true /* littleEndian */);
       port.send(buffer);
-
     };
 
     redSlider.addEventListener('input', onUpdate);
