@@ -11,15 +11,14 @@
     let ztdoc = document.querySelector('#ZTDoc');
     let port;
 
-    getdocButton.textContent = '2';
+    getdocButton.textContent = '3';
 
     function connect() {
       port.connect().then(() => {
         statusDisplay.textContent = '';
         connectButton.textContent = 'Disconnect';
         ztdoc.innerHTML = '';
-        port.send('G');
-
+        
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
           console.log(textDecoder.decode(data));
@@ -44,9 +43,9 @@
       view[2] = parseInt(blueSlider.value);
       port.send(view);
 */
-      let view = new Uint8Array(1);
-      view[0] = 'G';
-      port.send(view);
+      let buffer = new ArrayBuffer(1);
+      new DataView(buffer).setUint8(0, 'G', true /* littleEndian */);
+      port.send(buffer);
 
     };
 
