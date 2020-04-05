@@ -27,7 +27,7 @@
           docStr += str;
           //ztdoc.insertAdjacentHTML('afterend',textDecoder.decode(data));
           //ztdoc.innerHTML += textDecoder.decode(data);
-          console.log(str);
+          //console.log(str);
         }
         port.onReceiveError = error => {
           console.error(error);
@@ -88,7 +88,8 @@
 
     showdocButton.addEventListener('click', function() {
       showdocButton.textContent = 'working';
-      ztdoc.insertAdjacentHTML('afterbegin', docStr);
+      ztdoc.innerHTML = docStr;
+      console.log(docStr);
     });
 
     serial.getPorts().then(ports => {
