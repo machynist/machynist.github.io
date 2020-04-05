@@ -11,15 +11,16 @@
     let blueSlider = document.querySelector('#blue');
     let ztdoc = document.querySelector('#ZTDoc');
     let port;
-    let docStr = ""
+    let docStr;
 
-    getdocButton.textContent = '4';
+    getdocButton.textContent = '5';
 
     function connect() {
       port.connect().then(() => {
         statusDisplay.textContent = '';
         connectButton.textContent = 'Disconnect';
         ztdoc.innerHTML = '';
+        docStr = '';
         
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
@@ -27,7 +28,8 @@
           docStr += str;
           //ztdoc.insertAdjacentHTML('afterend',textDecoder.decode(data));
           //ztdoc.innerHTML += textDecoder.decode(data);
-          //console.log(str);
+          console.log("charCode\n" + str);
+          console.log("decode\n" + textDecoder.decode(data));
         }
         port.onReceiveError = error => {
           console.error(error);
