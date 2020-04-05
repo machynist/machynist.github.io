@@ -21,7 +21,9 @@
         
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
-          ztdoc.insertAdjacentHTML('afterend',textDecoder.decode(data));
+          str = String.fromCharCode.apply(null, new Uint16Array(data));
+          ztdoc.insertAdjacentHTML('afterend', str);
+          //ztdoc.insertAdjacentHTML('afterend',textDecoder.decode(data));
           //ztdoc.innerHTML += textDecoder.decode(data);
           console.log(textDecoder.decode(data));
         }
@@ -44,13 +46,13 @@
       view[1] = parseInt(greenSlider.value);
       view[2] = parseInt(blueSlider.value);
       port.send(view);
-*/
       var str = "Google";
       let buffer = new ArrayBuffer(1);
       let view = new Uint8Array(buffer);
       view[0] = str.charCodeAt(0);
-      // new DataView(buffer).setUint8(0, 'G', true /* littleEndian */);
+      // new DataView(buffer).setUint8(0, 'G', true;
       port.send(buffer);
+      */
     };
 
     redSlider.addEventListener('input', onUpdate);
@@ -79,7 +81,6 @@
       let buffer = new ArrayBuffer(1);
       let view = new Uint8Array(buffer);
       view[0] = str.charCodeAt(0);
-      // new DataView(buffer).setUint8(0, 'G', true /* littleEndian */);
       port.send(buffer);
     });
 
