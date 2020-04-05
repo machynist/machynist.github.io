@@ -21,7 +21,8 @@
         
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
-          ztdoc.innerHTML += textDecoder.decode(data);
+          ztdoc.insertAdjacentHTML('afterend',textDecoder.decode(data));
+          //ztdoc.innerHTML += textDecoder.decode(data);
           console.log(textDecoder.decode(data));
         }
         port.onReceiveError = error => {
