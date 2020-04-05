@@ -21,6 +21,7 @@
         
         port.onReceive = data => {
           let textDecoder = new TextDecoder();
+          ztdoc.innerHTML += textDecoder.decode(data);
           console.log(textDecoder.decode(data));
         }
         port.onReceiveError = error => {
@@ -73,7 +74,12 @@
     
     getdocButton.addEventListener('click', function() {
       getdocButton.textContent = 'working';
-      //port.send('G');
+      var str = "Google";
+      let buffer = new ArrayBuffer(1);
+      let view = new Uint8Array(buffer);
+      view[0] = str.charCodeAt(0);
+      // new DataView(buffer).setUint8(0, 'G', true /* littleEndian */);
+      port.send(buffer);
     });
 
     serial.getPorts().then(ports => {
