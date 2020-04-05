@@ -44,7 +44,9 @@
       port.send(view);
 */
       let buffer = new ArrayBuffer(1);
-      new DataView(buffer).setUint8(0, 'G', true /* littleEndian */);
+      let view = new Uint8Array(buffer);
+      view[0] = 'G';
+      // new DataView(buffer).setUint8(0, 'G', true /* littleEndian */);
       port.send(buffer);
 
     };
